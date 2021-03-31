@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:backgroundTint="@color/gray_6">
+    android:backgroundTint="@color/gray_6"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="70"
-        android:padding="10dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:padding="15dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@mipmap/ic_test_book_foreground" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,12 +76,13 @@
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_check_circle_24"
+                android:drawableTint="@color/gray_6"
                 android:fontFamily="@font/poppins"
                 android:text="Disponible"
                 android:textColor="@color/gray_6"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:drawableRight="@drawable/ic_baseline_person_24"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
