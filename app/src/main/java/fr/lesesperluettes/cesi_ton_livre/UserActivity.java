@@ -43,6 +43,11 @@ public class UserActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Toolbar navigation
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menu_action_logout){
@@ -55,6 +60,9 @@ public class UserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Sets colors of navigation using the current theme (set in the fragment)
+     */
     public void setActivityColor(){
         // Get primary color from current theme
         TypedValue typedValue = new TypedValue();
