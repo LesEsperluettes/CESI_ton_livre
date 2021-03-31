@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_search">
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="fr.lesesperluettes.cesi_ton_livre.ui.search.SearchFragment"
+        tools:layout="@layout/fragment_search" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_scan"
+        android:name="fr.lesesperluettes.cesi_ton_livre.ui.scan.ScanFragment"
+        tools:layout="@layout/fragment_scan" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre_green" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_borrow"
+        android:name="fr.lesesperluettes.cesi_ton_livre.ui.borrow.BorrowFragment"
+        tools:layout="@layout/fragment_borrow" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre_blue" />
+    </fragment>
+</navigation>
