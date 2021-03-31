@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="Rechercher : Nom, ISBN, ..."
@@ -20,11 +21,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
+                android:id="@+id/bookcard_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
+                android:id="@+id/bookcard_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
+                android:id="@+id/bookcard_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </fr.lesesperluettes.cesi_ton_livre.views.BookCardView>
+
+            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
+                android:id="@+id/bookcard_view_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
