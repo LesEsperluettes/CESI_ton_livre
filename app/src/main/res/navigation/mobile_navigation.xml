@@ -8,15 +8,30 @@
     <fragment
         android:id="@+id/navigation_search"
         android:name="fr.lesesperluettes.cesi_ton_livre.ui.search.SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_scan"
         android:name="fr.lesesperluettes.cesi_ton_livre.ui.scan.ScanFragment"
-        tools:layout="@layout/fragment_scan" />
+        tools:layout="@layout/fragment_scan" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre_green" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_borrow"
         android:name="fr.lesesperluettes.cesi_ton_livre.ui.borrow.BorrowFragment"
-        tools:layout="@layout/fragment_borrow" />
+        tools:layout="@layout/fragment_borrow" >
+        <argument
+            android:name="theme"
+            app:argType="reference"
+            android:defaultValue="@style/Theme.CESI_ton_livre_blue" />
+    </fragment>
 </navigation>

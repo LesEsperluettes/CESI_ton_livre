@@ -10,7 +10,7 @@ public class BorrowViewModel extends ViewModel {
 
     public BorrowViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is borrow fragment");
     }
 
     public LiveData<String> getText() {
