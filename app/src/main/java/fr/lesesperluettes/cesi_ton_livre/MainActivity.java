@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void moveToSearchActivity(){
-        Intent searchActivity = new Intent(this,SearchActivity.class);
+        Intent searchActivity = new Intent(this, UserActivity.class);
         startActivity(searchActivity);
     }
 }

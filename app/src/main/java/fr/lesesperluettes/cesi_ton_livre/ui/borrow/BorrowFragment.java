@@ -18,18 +18,14 @@ public class BorrowFragment extends Fragment {
 
     private BorrowViewModel borrowViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        borrowViewModel =
-                new ViewModelProvider(this).get(BorrowViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        borrowViewModel = new ViewModelProvider(this).get(BorrowViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_borrow, container, false);
+
         final TextView textView = root.findViewById(R.id.text_borrow);
-        borrowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        borrowViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
         return root;
     }
 }
