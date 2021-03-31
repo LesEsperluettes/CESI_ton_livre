@@ -45,5 +45,6 @@ public class BookCardView extends LinearLayout {
 
         rootLayout.setClipToOutline(true);
         imgBook.setImageResource(R.mipmap.ic_test_book_foreground);
+        txtTitle.setText("Text court");
     }
 }

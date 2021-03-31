@@ -30,10 +30,13 @@
             android:id="@+id/bookcard_txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="16sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
             android:fontFamily="@font/poppins"
             android:text="Titre"
             android:textColor="@color/orange"
-            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
