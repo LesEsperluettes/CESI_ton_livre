@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.core.content.res.ResourcesCompat;
 
-import java.util.jar.Attributes;
-
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.enums.BookCardStates;
 
