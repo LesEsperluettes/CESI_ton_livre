@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        button = (Button) findViewById(R.id.signUp);
+        button.setOnClickListener(v -> loginActivity());
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(v -> moveToSearchActivity());
 
@@ -27,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void moveToSearchActivity(){
-        Intent searchActivity = new Intent(this, UserActivity.class);
-        startActivity(searchActivity);
+    private void loginActivity(){
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);
     }
 }
