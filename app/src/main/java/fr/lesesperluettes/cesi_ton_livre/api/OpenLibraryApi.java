@@ -13,11 +13,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OpenLibraryApi {
 
     private final static String API_URL = "https://openlibrary.org/api/";
-    private Retrofit retrofit;
-    private OpenLibraryService service;
+    private final OpenLibraryService service;
 
     public OpenLibraryApi(){
-        this.retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -25,10 +24,18 @@ public class OpenLibraryApi {
         this.service = retrofit.create(OpenLibraryService.class);
     }
 
+    /**
+     * Return a book from the OpenLibrary API with his ISBN
+     * (null when the book cannot be found)
+     * @param ISBN book ISBN
+     * @param consumer consumer callback with Book instance
+     */
     public void getBook(String ISBN, Consumer<Book> consumer) {
         String tagISBN = "ISBN:"+ISBN;
         // Create call to api
         Call<Map<String, Book>> books = this.service.getBooks(tagISBN,"json","data");
+
+        // Wait for the response
         books.enqueue(new Callback<Map<String, Book>>() {
             @Override
             public void onResponse(Call<Map<String, Book>> call, Response<Map<String, Book>> response) {
