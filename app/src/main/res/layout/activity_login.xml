@@ -38,7 +38,7 @@
         android:layout_marginTop="178dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="jean.michel@viacesi.fr"
+        android:autofillHints="jean.michel@viacesi.fr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password123."
+        android:autofillHints="password"
         app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

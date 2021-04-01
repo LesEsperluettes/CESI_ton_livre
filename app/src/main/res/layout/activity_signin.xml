@@ -12,16 +12,14 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password123."
         app:layout_constraintBottom_toTopOf="@+id/confirmpasswordLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
-        android:autofillHints="password" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
 
     <EditText
         android:id="@+id/confirmpassword"
@@ -31,7 +29,6 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password123."
         app:layout_constraintBottom_toTopOf="@+id/phoneLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -45,7 +42,6 @@
         android:id="@+id/confirmpasswordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
         android:text="Confirmation du mot de passe"
@@ -53,8 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpassword"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/confirmpassword" />
 
     <EditText
         android:id="@+id/address"
@@ -63,7 +58,6 @@
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:inputType="text"
-        android:text="7 rue de ..."
         app:layout_constraintBottom_toTopOf="@+id/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -78,7 +72,6 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="text|phone"
-        android:text="0607080910"
         app:layout_constraintBottom_toTopOf="@+id/addressLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -93,7 +86,6 @@
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="jean.michel@viacesi.fr"
         app:layout_constraintBottom_toTopOf="@+id/passwordLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -108,7 +100,6 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Jean"
         app:layout_constraintBottom_toTopOf="@+id/emailLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -125,7 +116,6 @@
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Michel"
         app:layout_constraintBottom_toTopOf="@+id/firstnameLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +126,6 @@
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="16dp"
@@ -153,7 +142,6 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="8dp"
         android:text="Prénom"
         app:layout_constraintBottom_toTopOf="@+id/firstname"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +153,6 @@
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="4dp"
@@ -179,7 +166,6 @@
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="4dp"
@@ -188,8 +174,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/phoneLabel"
@@ -197,19 +182,18 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:text="Phone"
         app:layout_constraintBottom_toTopOf="@+id/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmpassword" />
 
     <TextView
         android:id="@+id/addressLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:layout_marginEnd="280dp"
         android:layout_marginStart="101dp"
         android:text="Adresse"
