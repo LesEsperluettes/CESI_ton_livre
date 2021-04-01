@@ -51,7 +51,7 @@
         app:drawableTint="@color/gray_1" />
 
     <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-        android:id="@+id/bookcard_view_2"
+        android:id="@+id/barcode_bookCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40"

@@ -3,6 +3,8 @@ package fr.lesesperluettes.cesi_ton_livre.views;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -18,6 +20,8 @@ import androidx.core.content.res.ResourcesCompat;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import fr.lesesperluettes.cesi_ton_livre.R;
@@ -63,21 +67,10 @@ public class BookCardView extends LinearLayout {
         progLoading = (ProgressBar) findViewById(R.id.bookcard_progLoading);
 
         rootLayout.setClipToOutline(true);
-        imgBook.setImageResource(R.mipmap.ic_test_book_foreground);
 
         // Example de chargement asynchrone avec OpenLibrary
         // TODO implémenter la liaison avec la base
-
-        OpenLibraryApi api = new OpenLibraryApi();
-        this.setState(context, BookCardStates.LOADING);
-        api.getBook("9782871291756", book -> {
-            try {
-                this.loadBook(book);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.setState(context, BookCardStates.AVAILABLE);
-        });
+        //loadBookFromApi(context,"9782871292067");
 
     }
 
@@ -119,6 +112,8 @@ public class BookCardView extends LinearLayout {
     }
 
     public void loadBook(Book book) throws IOException {
+        if(book == null) return;
+
         String authors = book.getAuthors().stream()
                             .map(Author::getName)
                             .collect(Collectors.joining(", "));
@@ -133,7 +128,38 @@ public class BookCardView extends LinearLayout {
         this.txtDate.setText(book.getPublishDate());
         this.txtISBN.setText("ISBN : "+book.getIdentifiers().getIsbn13().get(0));
 
-        // TODO add image loading
+        // Image loading from url
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            // Query the image from the web
+            Bitmap bmp = null;
+            try {
+                URL thumbUrl = new URL(book.getCover().getMedium());
+                bmp = BitmapFactory.decodeStream(thumbUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Bitmap finalBmp = bmp;
+            handler.post(() -> {
+                // Apply the image to the ImageView
+                this.imgBook.setImageBitmap(finalBmp);
+            });
+        });
+    }
+
+    public void loadBookFromApi(Context context, String ISBN) {
+        OpenLibraryApi api = new OpenLibraryApi();
+        this.setState(context, BookCardStates.LOADING);
+        api.getBook(ISBN, book -> {
+            try {
+                this.loadBook(book);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.setState(context, BookCardStates.AVAILABLE);
+        });
     }
 
     private void setIsLoading(boolean loading){
