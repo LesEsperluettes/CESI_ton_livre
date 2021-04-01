@@ -2,15 +2,20 @@ package fr.lesesperluettes.cesi_ton_livre.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.core.content.res.ResourcesCompat;
+
 import java.util.jar.Attributes;
 
 import fr.lesesperluettes.cesi_ton_livre.R;
+import fr.lesesperluettes.cesi_ton_livre.enums.BookCardStates;
 
 public class BookCardView extends LinearLayout {
 
@@ -31,7 +36,6 @@ public class BookCardView extends LinearLayout {
 
     private void initControl(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         inflater.inflate(R.layout.control_book,this);
 
         rootLayout = (LinearLayout) findViewById(R.id.bookcard_root);
@@ -45,6 +49,39 @@ public class BookCardView extends LinearLayout {
 
         rootLayout.setClipToOutline(true);
         imgBook.setImageResource(R.mipmap.ic_test_book_foreground);
-        txtTitle.setText("Text court");
+
+        this.setState(context, BookCardStates.AVAILABLE);
+    }
+
+    public void setState(Context context, BookCardStates state){
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int activatedColor = typedValue.data;
+
+        int disabledColor = ResourcesCompat.getColor(getResources(),R.color.gray_3,null);
+
+        switch(state){
+            case AVAILABLE:
+                updateBtn("Disponible",activatedColor,R.drawable.ic_baseline_check_circle_24);
+                break;
+            case NOT_AVAILABLE:
+                updateBtn("Indisponible",disabledColor,R.drawable.ic_baseline_cancel_24);
+                break;
+            case BORROW:
+                updateBtn("Emprunter",activatedColor,R.drawable.ic_book_reader_solid);
+                break;
+            case LATE:
+                updateBtn("En retard !",disabledColor,R.drawable.ic_baseline_cancel_24);
+                break;
+            case NOT_LATE:
+                updateBtn("temps restant",activatedColor,R.drawable.ic_baseline_check_circle_24);
+                break;
+        }
+    }
+
+    private void updateBtn(String text, int color, int icon){
+        btnStatus.setText(text);
+        btnStatus.setBackgroundColor(color);
+        btnStatus.setCompoundDrawablesWithIntrinsicBounds(0,0,icon,0);
     }
 }
