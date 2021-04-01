@@ -1,19 +1,28 @@
 package fr.lesesperluettes.cesi_ton_livre.ui.scan;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.budiyev.android.codescanner.CodeScanner;
-import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.ResultPoint;
+import com.journeyapps.barcodescanner.BarcodeCallback;
+import com.journeyapps.barcodescanner.BarcodeResult;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.DefaultDecoderFactory;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
@@ -21,7 +30,28 @@ import fr.lesesperluettes.cesi_ton_livre.UserActivity;
 public class ScanFragment extends Fragment {
 
     private ScanViewModel scanViewModel;
-    private CodeScanner mCodeScanner;
+
+    private DecoratedBarcodeView barcodeView;
+    private String lastText;
+
+    private TextView txtResult;
+
+    private BarcodeCallback callback = new BarcodeCallback() {
+        @Override
+        public void barcodeResult(BarcodeResult result) {
+            if(result.getText() == null || result.getText().equals(lastText)) {
+                // Prevent duplicate scans
+                return;
+            }
+
+            lastText = result.getText();
+            txtResult.setText(lastText);
+        }
+
+        @Override
+        public void possibleResultPoints(List<ResultPoint> resultPoints) {
+        }
+    };
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Set fragment theme color
@@ -34,29 +64,17 @@ public class ScanFragment extends Fragment {
         scanViewModel = new ViewModelProvider(this).get(ScanViewModel.class);
         View root = inflater.inflate(R.layout.fragment_scan, container, false);
 
+        barcodeView = (DecoratedBarcodeView) root.findViewById(R.id.barcode_scanner);
+        txtResult = (TextView) root.findViewById(R.id.barcode_txtResult);
+
+        Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.CODE_39);
+        barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
+        barcodeView.initializeFromIntent(getActivity().getIntent());
+        barcodeView.decodeContinuous(callback);
+
         // Set test text
         //final TextView textView = root.findViewById(R.id.text_scan);
         //scanViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
-
-        CodeScannerView scannerView = root.findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(activity, scannerView);
-        mCodeScanner.setDecodeCallback(new DecodeCallback() {
-            @Override
-            public void onDecoded(@NonNull final Result result) {
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-        scannerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCodeScanner.startPreview();
-            }
-        });
 
         return root;
     }
@@ -64,12 +82,24 @@ public class ScanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mCodeScanner.startPreview();
+        barcodeView.resume();
     }
 
     @Override
     public void onPause() {
-        mCodeScanner.releaseResources();
         super.onPause();
+        barcodeView.pause();
+    }
+
+    public void pause(View view) {
+        barcodeView.pause();
+    }
+
+    public void resume(View view) {
+        barcodeView.resume();
+    }
+
+    public void triggerScan(View view) {
+        barcodeView.decodeSingle(callback);
     }
 }
