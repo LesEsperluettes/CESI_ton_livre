@@ -1,14 +1,17 @@
 package fr.lesesperluettes.cesi_ton_livre;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import fr.lesesperluettes.cesi_ton_livre.api.OpenLibraryApi;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)  == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 100);
         }
+
+        OpenLibraryApi api = new OpenLibraryApi();
+        api.getBook("9782871291756",book -> {
+            Log.d("debug",book.getTitle());
+        });
     }
 
     private void moveToSearchActivity(){
