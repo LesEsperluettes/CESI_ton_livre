@@ -38,8 +38,8 @@ public class SearchFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
         // Set test text
-        final TextView textView = root.findViewById(R.id.text_search);
-        searchViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
+        //final TextView textView = root.findViewById(R.id.text_search);
+        //searchViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
 
         return root;
     }
