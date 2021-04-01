@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.signUp);
         button.setOnClickListener(v -> loginActivity());
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(v -> moveToSearchActivity());
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)  == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 100);
