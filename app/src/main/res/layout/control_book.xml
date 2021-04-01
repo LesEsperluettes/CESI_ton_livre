@@ -9,6 +9,15 @@
     android:gravity="center"
     android:layout_margin="4dp">
 
+    <ProgressBar
+        android:id="@+id/bookcard_progLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="70"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/bookcard_imgBook"
         android:layout_width="match_parent"
@@ -16,14 +25,17 @@
         android:layout_weight="70"
         android:contentDescription="book preview"
         android:scaleType="centerCrop"
+        android:visibility="visible"
         tools:srcCompat="@mipmap/ic_test_book_foreground" />
 
     <LinearLayout
+        android:id="@+id/bookcard_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="30"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/bookcard_txtTitle"
