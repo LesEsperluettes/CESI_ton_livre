@@ -28,11 +28,6 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)  == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 100);
         }
-
-        OpenLibraryApi api = new OpenLibraryApi();
-        api.getBook("9782871291756",book -> {
-            Log.d("debug",book.getTitle());
-        });
     }
 
     private void moveToSearchActivity(){
