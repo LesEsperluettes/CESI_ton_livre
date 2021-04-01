@@ -8,6 +8,8 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,6 +47,8 @@ public class BookCardView extends LinearLayout {
     private Button btnStatus;
     private ProgressBar progLoading;
 
+    private Animation fadeIn;
+
     public BookCardView(Context context, AttributeSet att) {
         super(context,att);
         initControl(context);
@@ -66,11 +70,13 @@ public class BookCardView extends LinearLayout {
         btnStatus = (Button) findViewById(R.id.bookcard_btnStatus);
         progLoading = (ProgressBar) findViewById(R.id.bookcard_progLoading);
 
+        fadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+
         rootLayout.setClipToOutline(true);
 
         // Example de chargement asynchrone avec OpenLibrary
         // TODO implémenter la liaison avec la base
-        //loadBookFromApi(context,"9782871292067");
+        loadBookFromApi(context,"9782871292067");
 
     }
 
@@ -144,6 +150,7 @@ public class BookCardView extends LinearLayout {
             Bitmap finalBmp = bmp;
             handler.post(() -> {
                 // Apply the image to the ImageView
+                this.imgBook.startAnimation(this.fadeIn);
                 this.imgBook.setImageBitmap(finalBmp);
             });
         });
