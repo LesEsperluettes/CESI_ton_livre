@@ -30,34 +30,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextSearch">
 
         <LinearLayout
+            android:id="@+id/search_card_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-                android:id="@+id/bookcard_view_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-                android:id="@+id/bookcard_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-                android:id="@+id/bookcard_view_3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </fr.lesesperluettes.cesi_ton_livre.views.BookCardView>
-
-            <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-                android:id="@+id/bookcard_view_4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+            android:paddingRight="24dp"/>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
