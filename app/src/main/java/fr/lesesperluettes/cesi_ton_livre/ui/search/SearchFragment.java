@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
+import fr.lesesperluettes.cesi_ton_livre.views.BookCardView;
 
 public class SearchFragment extends Fragment {
 
@@ -27,9 +29,11 @@ public class SearchFragment extends Fragment {
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
-        // Set test text
-        //final TextView textView = root.findViewById(R.id.text_search);
-        //searchViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
+        // Add book card (temp)
+        final LinearLayout v = (LinearLayout) root.findViewById(R.id.search_card_layout);
+        BookCardView bookCardView = new BookCardView(getContext(),null);
+        bookCardView.setFragmentActivity(getActivity());
+        v.addView(bookCardView);
 
         return root;
     }

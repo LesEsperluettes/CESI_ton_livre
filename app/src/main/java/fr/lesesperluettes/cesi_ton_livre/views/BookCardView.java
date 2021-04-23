@@ -7,20 +7,24 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,8 +36,11 @@ import fr.lesesperluettes.cesi_ton_livre.api.models.Author;
 import fr.lesesperluettes.cesi_ton_livre.api.models.Book;
 import fr.lesesperluettes.cesi_ton_livre.api.models.Publisher;
 import fr.lesesperluettes.cesi_ton_livre.enums.BookCardStates;
+import fr.lesesperluettes.cesi_ton_livre.ui.popup.SearchDialogFragment;
 
 public class BookCardView extends LinearLayout {
+
+    private FragmentActivity fragmentActivity;
 
     private LinearLayout rootLayout;
     private LinearLayout linearLayout;
@@ -54,6 +61,10 @@ public class BookCardView extends LinearLayout {
         initControl(context);
     }
 
+    public void setFragmentActivity(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
+    }
+
     private void initControl(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.control_book,this);
@@ -67,12 +78,17 @@ public class BookCardView extends LinearLayout {
         txtPublishers = (TextView) findViewById(R.id.bookcard_txtPublishers);
         txtDate = (TextView) findViewById(R.id.bookcard_txtDate);
         txtISBN = (TextView) findViewById(R.id.bookcard_txtISBN);
-        btnStatus = (Button) findViewById(R.id.bookcard_btnStatus);
+        btnStatus = (Button) findViewById(R.id.search_popup_button);
         progLoading = (ProgressBar) findViewById(R.id.bookcard_progLoading);
 
         fadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
 
         rootLayout.setClipToOutline(true);
+
+        btnStatus.setOnClickListener(v -> {
+            DialogFragment fragment = new SearchDialogFragment();
+            fragment.show(fragmentActivity.getSupportFragmentManager(),"SearchDialogFragment");
+        });
 
         // Example de chargement asynchrone avec OpenLibrary
         // TODO implémenter la liaison avec la base
@@ -179,5 +195,10 @@ public class BookCardView extends LinearLayout {
             linearLayout.setVisibility(VISIBLE);
             progLoading.setVisibility(GONE);
         }
+    }
+
+    private void showSearchDialog(Context context){
+        DialogFragment dialog = new SearchDialogFragment();
+
     }
 }

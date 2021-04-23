@@ -89,7 +89,7 @@
                 android:textColor="@color/gray_1" />
 
             <Button
-                android:id="@+id/bookcard_btnStatus"
+                android:id="@+id/search_popup_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_check_circle_24"
