@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
+import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
 import fr.lesesperluettes.cesi_ton_livre.views.BookCardView;
 
 public class SearchFragment extends Fragment {
@@ -31,7 +32,7 @@ public class SearchFragment extends Fragment {
 
         // Add book card (temp)
         final LinearLayout v = (LinearLayout) root.findViewById(R.id.search_card_layout);
-        BookCardView bookCardView = new BookCardView(getContext(),null);
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SEARCH);
         bookCardView.setFragmentActivity(getActivity());
         v.addView(bookCardView);
 

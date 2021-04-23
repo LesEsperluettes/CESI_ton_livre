@@ -50,11 +50,11 @@
         app:drawableEndCompat="@drawable/ic_baseline_edit_24"
         app:drawableTint="@color/gray_1" />
 
-    <fr.lesesperluettes.cesi_ton_livre.views.BookCardView
-        android:id="@+id/barcode_bookCard"
+    <LinearLayout
+        android:id="@+id/barcode_cardLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40"
-        android:gravity="center"/>
+        android:layout_height="200dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"></LinearLayout>
 
 </LinearLayout>

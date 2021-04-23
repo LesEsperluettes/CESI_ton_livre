@@ -36,11 +36,13 @@ import fr.lesesperluettes.cesi_ton_livre.api.models.Author;
 import fr.lesesperluettes.cesi_ton_livre.api.models.Book;
 import fr.lesesperluettes.cesi_ton_livre.api.models.Publisher;
 import fr.lesesperluettes.cesi_ton_livre.enums.BookCardStates;
+import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
 import fr.lesesperluettes.cesi_ton_livre.ui.popup.SearchDialogFragment;
 
 public class BookCardView extends LinearLayout {
 
     private FragmentActivity fragmentActivity;
+    private BookCardType bookCardType;
 
     private LinearLayout rootLayout;
     private LinearLayout linearLayout;
@@ -56,8 +58,9 @@ public class BookCardView extends LinearLayout {
 
     private Animation fadeIn;
 
-    public BookCardView(Context context, AttributeSet att) {
-        super(context,att);
+    public BookCardView(Context context, AttributeSet attrs, BookCardType type) {
+        super(context,attrs);
+        this.bookCardType = type;
         initControl(context);
     }
 
@@ -92,10 +95,18 @@ public class BookCardView extends LinearLayout {
 
         // Example de chargement asynchrone avec OpenLibrary
         // TODO implémenter la liaison avec la base
-        loadBookFromApi(context,"9782871292067");
+        //loadBookFromApi(context,"9782871292067");
 
+        // Set loading state
+        setState(context,BookCardStates.LOADING);
     }
 
+    /**
+     * Set current state of the book card
+     *
+     * @param context
+     * @param state
+     */
     public void setState(Context context, BookCardStates state){
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
@@ -133,6 +144,11 @@ public class BookCardView extends LinearLayout {
         btnStatus.setCompoundDrawablesWithIntrinsicBounds(0,0,icon,0);
     }
 
+    /**
+     * Load book into the card
+     * @param book
+     * @throws IOException
+     */
     public void loadBook(Book book) throws IOException {
         if(book == null) return;
 
@@ -172,6 +188,11 @@ public class BookCardView extends LinearLayout {
         });
     }
 
+    /**
+     * Load book from OpenLibraryApi using his ISBN
+     * @param context
+     * @param ISBN
+     */
     public void loadBookFromApi(Context context, String ISBN) {
         OpenLibraryApi api = new OpenLibraryApi();
         this.setState(context, BookCardStates.LOADING);
@@ -185,6 +206,10 @@ public class BookCardView extends LinearLayout {
         });
     }
 
+    /**
+     * Set card in loading animation
+     * @param loading
+     */
     private void setIsLoading(boolean loading){
         if(loading){
             imgBook.setVisibility(GONE);
@@ -195,10 +220,5 @@ public class BookCardView extends LinearLayout {
             linearLayout.setVisibility(VISIBLE);
             progLoading.setVisibility(GONE);
         }
-    }
-
-    private void showSearchDialog(Context context){
-        DialogFragment dialog = new SearchDialogFragment();
-
     }
 }
