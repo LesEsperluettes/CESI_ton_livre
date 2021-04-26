@@ -17,8 +17,6 @@ import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.lesesperluettes.cesi_ton_livre.ui.scan.ScanFragment;
-
 public class SignInActivity extends AppCompatActivity {
 
     Button btnSignIn;
@@ -31,8 +29,8 @@ public class SignInActivity extends AppCompatActivity {
 
         username = findViewById(R.id.signup_username);
         email = findViewById(R.id.signup_email);
-        password = findViewById(R.id.signup_password);
-        confirmPassword = findViewById(R.id.signup_passwordC);
+        password = findViewById(R.id.signin_username);
+        confirmPassword = findViewById(R.id.signin_password);
 
         AndroidNetworking.initialize(getApplicationContext());
 
@@ -53,7 +51,9 @@ public class SignInActivity extends AppCompatActivity {
         Intent loginActivity = new Intent(this, LoginActivity.class);
 
         // send sign in request to API
-        AndroidNetworking.post("http://192.168.1.16:8080/auth/signup")
+        PropertyReader reader = new PropertyReader(this);
+        String url = reader.getMyProperties("app.properties").getProperty("api_url");
+        AndroidNetworking.post(url+"/auth/signup")
                 .addJSONObjectBody(jsonObject)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

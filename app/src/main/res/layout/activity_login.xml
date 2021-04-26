@@ -4,80 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
     tools:context=".LoginActivity">
 
 
     <Button
-        android:id="@+id/buttonSignUp"
+        android:id="@+id/signin_btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="14dp"
-        android:text="Se connecter"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAdmin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_passwordC" />
-
-    <Button
-        android:id="@+id/buttonAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="227dp"
-        android:layout_marginTop="16dp"
-        android:text="admin portal"
+        android:layout_marginBottom="24dp"
+        android:text="Créer un compte"
+        app:iconTint="#FCE4EC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/signup_password"
+    <Button
+        android:id="@+id/signin_btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Se connecter"
+        app:layout_constraintBottom_toTopOf="@+id/signin_btnCreate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/signin_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="178dp"
+        android:autofillHints="jean.michel@viacesi.fr"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:autofillHints="jean.michel@viacesi.fr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
-        android:id="@+id/signup_passwordC"
-        android:layout_width="wrap_content"
+        android:id="@+id/signin_password"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
         android:layout_marginTop="16dp"
+        android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:autofillHints="password"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
+        android:password="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_username" />
 
     <TextView
         android:id="@+id/signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:text="Créer un compte"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAdmin"
+        android:fontFamily="@font/poppins"
+        android:text="Connectez-vous"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signin_username"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/signin_btnLogin"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

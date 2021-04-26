@@ -10,7 +10,7 @@
 
 
     <EditText
-        android:id="@+id/signup_passwordC"
+        android:id="@+id/signin_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="password"
@@ -31,10 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_username" />
 
     <EditText
-        android:id="@+id/signup_password"
+        android:id="@+id/signin_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="jean.michel@viacesi.fr"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Mot de passe"
-        app:layout_constraintBottom_toTopOf="@+id/signup_password"
+        app:layout_constraintBottom_toTopOf="@+id/signin_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email" />

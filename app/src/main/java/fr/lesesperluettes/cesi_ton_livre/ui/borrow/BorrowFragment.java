@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import fr.lesesperluettes.cesi_ton_livre.Book;
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
 import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
@@ -33,7 +34,7 @@ public class BorrowFragment extends Fragment {
 
         // Add book card (temp)
         final LinearLayout v = (LinearLayout) root.findViewById(R.id.borrow_layout);
-        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.BORROW);
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.BORROW,new Book());
         bookCardView.setFragmentActivity(getActivity());
         v.addView(bookCardView);
 

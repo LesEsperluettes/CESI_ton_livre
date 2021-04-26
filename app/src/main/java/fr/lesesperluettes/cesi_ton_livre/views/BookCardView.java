@@ -43,6 +43,7 @@ public class BookCardView extends LinearLayout {
 
     private FragmentActivity fragmentActivity;
     private BookCardType bookCardType;
+    private fr.lesesperluettes.cesi_ton_livre.Book book;
 
     private LinearLayout rootLayout;
     private LinearLayout linearLayout;
@@ -58,9 +59,10 @@ public class BookCardView extends LinearLayout {
 
     private Animation fadeIn;
 
-    public BookCardView(Context context, AttributeSet attrs, BookCardType type) {
+    public BookCardView(Context context, AttributeSet attrs, BookCardType type, fr.lesesperluettes.cesi_ton_livre.Book book) {
         super(context,attrs);
         this.bookCardType = type;
+        this.book = book;
         initControl(context);
     }
 
@@ -96,9 +98,9 @@ public class BookCardView extends LinearLayout {
         // Example de chargement asynchrone avec OpenLibrary
         // TODO implémenter la liaison avec la base
         //loadBookFromApi(context,"9782871292067");
-
-        // Set loading state
         setState(context,BookCardStates.LOADING);
+        loadBook(context,this.book);
+
     }
 
     /**
@@ -144,12 +146,23 @@ public class BookCardView extends LinearLayout {
         btnStatus.setCompoundDrawablesWithIntrinsicBounds(0,0,icon,0);
     }
 
+    private void loadBook(Context context,fr.lesesperluettes.cesi_ton_livre.Book book){
+        this.txtTitle.setText(book.getTitle());
+        this.txtAuthors.setText(book.getAuthors());
+        this.txtPublishers.setText(book.getPublishers());
+        this.txtDate.setText(book.getPublishedDate());
+        this.txtISBN.setText(book.getISBN());
+
+        if(!book.isBorrowed()) setState(context,BookCardStates.NOT_AVAILABLE);
+        else setState(context,BookCardStates.AVAILABLE);
+    }
+
     /**
      * Load book into the card
      * @param book
      * @throws IOException
      */
-    public void loadBook(Book book) throws IOException {
+    public void loadBookApi(Book book) throws IOException {
         if(book == null) return;
 
         String authors = book.getAuthors().stream()
@@ -198,7 +211,7 @@ public class BookCardView extends LinearLayout {
         this.setState(context, BookCardStates.LOADING);
         api.getBook(ISBN, book -> {
             try {
-                this.loadBook(book);
+                this.loadBookApi(book);
             } catch (IOException e) {
                 e.printStackTrace();
             }

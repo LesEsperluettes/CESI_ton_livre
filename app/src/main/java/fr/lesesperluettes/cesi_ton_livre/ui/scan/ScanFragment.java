@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import fr.lesesperluettes.cesi_ton_livre.Book;
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
 import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
@@ -75,7 +76,7 @@ public class ScanFragment extends Fragment {
 
         // Add book card
         final LinearLayout v = (LinearLayout) root.findViewById(R.id.barcode_cardLayout);
-        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SCAN);
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SCAN,new Book());
         bookCardView.setFragmentActivity(getActivity());
         this.bookCard = bookCardView;
         v.addView(bookCardView);
