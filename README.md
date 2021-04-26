@@ -11,7 +11,7 @@ Application android de gestion de bibliothèques avec un scan des codes barres.
 
 # Requirement
 * Android Studio
-* API server setup : https://github.com/LesEsperluettes/CESI_ton_livre_AP
+* API server setup : https://github.com/LesEsperluettes/CESI_ton_livre_API
 
 # Config
 * edit `app/src/assets/app.property` with your api url.
