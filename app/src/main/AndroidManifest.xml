@@ -16,14 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.CESI_ton_livre">
-        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SignInActivity"></activity>
         <activity
             android:name=".UserActivity"
             android:label="@string/title_activity_user" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

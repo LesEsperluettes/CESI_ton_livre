@@ -4,14 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import fr.lesesperluettes.cesi_ton_livre.Book;
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
+import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
+import fr.lesesperluettes.cesi_ton_livre.views.BookCardView;
 
 public class BorrowFragment extends Fragment {
 
@@ -28,9 +32,11 @@ public class BorrowFragment extends Fragment {
         borrowViewModel = new ViewModelProvider(this).get(BorrowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_borrow, container, false);
 
-        // Set test text
-        final TextView textView = root.findViewById(R.id.text_borrow);
-        borrowViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
+        // Add book card (temp)
+        final LinearLayout v = (LinearLayout) root.findViewById(R.id.borrow_layout);
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.BORROW,new Book());
+        bookCardView.setFragmentActivity(getActivity());
+        v.addView(bookCardView);
 
         return root;
     }

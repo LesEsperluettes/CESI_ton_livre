@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +25,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import fr.lesesperluettes.cesi_ton_livre.Book;
 import fr.lesesperluettes.cesi_ton_livre.R;
 import fr.lesesperluettes.cesi_ton_livre.UserActivity;
+import fr.lesesperluettes.cesi_ton_livre.enums.BookCardType;
 import fr.lesesperluettes.cesi_ton_livre.views.BookCardView;
 
 public class ScanFragment extends Fragment {
@@ -70,7 +73,13 @@ public class ScanFragment extends Fragment {
 
         barcodeView = (DecoratedBarcodeView) root.findViewById(R.id.barcode_scanner);
         txtResult = (TextView) root.findViewById(R.id.barcode_txtResult);
-        bookCard = (BookCardView) root.findViewById(R.id.barcode_bookCard);
+
+        // Add book card
+        final LinearLayout v = (LinearLayout) root.findViewById(R.id.barcode_cardLayout);
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SCAN,new Book());
+        bookCardView.setFragmentActivity(getActivity());
+        this.bookCard = bookCardView;
+        v.addView(bookCardView);
 
         Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.CODE_39);
         barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));

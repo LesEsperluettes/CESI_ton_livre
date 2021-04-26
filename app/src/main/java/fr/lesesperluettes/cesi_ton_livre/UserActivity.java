@@ -1,9 +1,13 @@
 package fr.lesesperluettes.cesi_ton_livre;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -21,6 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserActivity extends AppCompatActivity {
 
+    private TokenManager tokenManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,9 @@ public class UserActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController,appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        this.tokenManager = TokenManager.getInstance(this);
+
     }
 
     @Override
@@ -51,10 +60,16 @@ public class UserActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menu_action_logout){
-            Log.d("debug","Action logout has clicked");
+            // Remove token from preferences and redirect to login
+            Intent LoginActivity = new Intent(this, LoginActivity.class);
+
+            tokenManager.removeToken();
+
+            startActivity(LoginActivity);
+
             return true;
         }else if(item.getItemId() == R.id.menu_action_profile){
-            Log.d("debug","Action profile has clicked");
+
             return true;
         }
         return super.onOptionsItemSelected(item);
