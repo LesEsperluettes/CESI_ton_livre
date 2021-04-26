@@ -3,7 +3,7 @@ Application android de gestion de bibliothèques avec un scan des codes barres.
 
 # TODO
 [x] Login system via API
-[] Show all books from API.
+[x] Show all books from API (still missing pictures).
 [] Borrow a book using his bar code.
 [] Show currently borrowed books.
 [] Return borrowed book.
