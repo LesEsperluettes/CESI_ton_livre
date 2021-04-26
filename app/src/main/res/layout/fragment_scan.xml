@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:text="Scanner l'ISBN de l'ouvrage"
+        android:textAlignment="center"
+        android:textColor="@color/gray_1"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:elevation="4dp"
+        android:background="@drawable/background_shadow_border"/>
+
+    <TextView
+        android:id="@+id/barcode_txtResult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_margin="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="ISBN"
+        android:fontFamily="@font/poppins"
+        android:includeFontPadding="false"
+        android:textColor="@color/gray_1"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:background="@drawable/background_shadow_border"
+        android:elevation="4dp"
+        app:drawableEndCompat="@drawable/ic_baseline_edit_24"
+        app:drawableTint="@color/gray_1" />
+
+    <LinearLayout
+        android:id="@+id/barcode_cardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"></LinearLayout>
+
+</LinearLayout>
