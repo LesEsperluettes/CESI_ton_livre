@@ -94,6 +94,7 @@ public class SearchFragment extends Fragment {
                                 newBook.setPublishedDate(book.getString("publishedDate"));
                                 newBook.setLocalisation(book.getString("localisation"));
                                 newBook.setBorrowed(book.getBoolean("available"));
+                                newBook.setImage64(book.getString("coverImage"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

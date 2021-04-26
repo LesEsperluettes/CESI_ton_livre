@@ -8,6 +8,7 @@ public class Book {
     private String publishedDate;
     private String localisation;
     private boolean borrowed;
+    private String image64;
 
     public Book(){}
 
@@ -65,5 +66,13 @@ public class Book {
 
     public void setBorrowed(boolean borrowed) {
         this.borrowed = borrowed;
+    }
+
+    public String getImage64() {
+        return image64;
+    }
+
+    public void setImage64(String image64) {
+        this.image64 = image64;
     }
 }

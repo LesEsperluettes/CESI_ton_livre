@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class BookCardView extends LinearLayout {
     private FragmentActivity fragmentActivity;
     private BookCardType bookCardType;
     private fr.lesesperluettes.cesi_ton_livre.Book book;
+    private SearchDialogFragment searchDialogFragment;
 
     private LinearLayout rootLayout;
     private LinearLayout linearLayout;
@@ -89,17 +91,20 @@ public class BookCardView extends LinearLayout {
         fadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
 
         rootLayout.setClipToOutline(true);
+        this.searchDialogFragment = new SearchDialogFragment("unknown");
 
         btnStatus.setOnClickListener(v -> {
-            DialogFragment fragment = new SearchDialogFragment();
-            fragment.show(fragmentActivity.getSupportFragmentManager(),"SearchDialogFragment");
+            this.searchDialogFragment.show(fragmentActivity.getSupportFragmentManager(),"SearchDialogFragment");
         });
 
         // Example de chargement asynchrone avec OpenLibrary
-        // TODO implémenter la liaison avec la base
         //loadBookFromApi(context,"9782871292067");
+
         setState(context,BookCardStates.LOADING);
-        loadBook(context,this.book);
+        if(book != null){
+            loadBook(context,this.book);
+        }
+
 
     }
 
@@ -152,6 +157,24 @@ public class BookCardView extends LinearLayout {
         this.txtPublishers.setText(book.getPublishers());
         this.txtDate.setText(book.getPublishedDate());
         this.txtISBN.setText(book.getISBN());
+        this.searchDialogFragment.setLocalisation(book.getLocalisation());
+
+        // Image loading from url
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            Bitmap bmp = null;
+            byte[] decodedString = Base64.decode(book.getImage64(), Base64.DEFAULT);
+            bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+            Bitmap finalBmp = bmp;
+            handler.post(() -> {
+                // Apply the image to the ImageView
+                this.imgBook.startAnimation(this.fadeIn);
+                this.imgBook.setImageBitmap(finalBmp);
+            });
+        });
 
         if(!book.isBorrowed()) setState(context,BookCardStates.NOT_AVAILABLE);
         else setState(context,BookCardStates.AVAILABLE);
@@ -215,7 +238,7 @@ public class BookCardView extends LinearLayout {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            this.setState(context, BookCardStates.AVAILABLE);
+            this.setState(context, BookCardStates.NOT_AVAILABLE);
         });
     }
 

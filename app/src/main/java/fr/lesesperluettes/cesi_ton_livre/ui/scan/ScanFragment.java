@@ -76,7 +76,7 @@ public class ScanFragment extends Fragment {
 
         // Add book card
         final LinearLayout v = (LinearLayout) root.findViewById(R.id.barcode_cardLayout);
-        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SCAN,new Book());
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.SCAN,null);
         bookCardView.setFragmentActivity(getActivity());
         this.bookCard = bookCardView;
         v.addView(bookCardView);

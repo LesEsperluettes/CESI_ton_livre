@@ -34,9 +34,9 @@ public class BorrowFragment extends Fragment {
 
         // Add book card (temp)
         final LinearLayout v = (LinearLayout) root.findViewById(R.id.borrow_layout);
-        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.BORROW,new Book());
+        BookCardView bookCardView = new BookCardView(getContext(),null, BookCardType.BORROW,null);
         bookCardView.setFragmentActivity(getActivity());
-        v.addView(bookCardView);
+        //v.addView(bookCardView);
 
         return root;
     }
